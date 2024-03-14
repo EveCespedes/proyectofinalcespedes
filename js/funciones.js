@@ -1,14 +1,14 @@
 const productos = [
-    {id:1 , nombre:"Fernet", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_625593-MLA74134567488_012024-F.webp",descripcion:"Alcohol", precio:"9500"},
-    {id:2 , nombre:"Absolut", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_653243-MLA74218928615_012024-F.webp",descripcion:"Alcohol", precio:"17500"},
-    {id:3, nombre:"Gin", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_691277-MLA74139426669_012024-F.webp", descripcion:"Alcohol",precio:"10000"},
-    {id:4, nombre:"Campari", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_987838-MLA53300291199_012023-F.webp", descripcion:"Alcohol", precio:"70000"},
-    {id:5, nombre:"Ron", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_657424-MLA74218925321_012024-F.webp", descripcion:"Alcohol",precio:"12000"},
-    {id:6 , nombre:"Whisky", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_811495-MLA74113010398_012024-F.webp", descripcion:"Alcohol", precio:"25000"},
-    {id:7, nombre:"Coca cola", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_663842-MLA53151984915_012023-F.webp",descripcion:"Gaseosa",precio:"2400"},
-    {id:8, nombre:"Jugo cepita", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_841533-MLA52981759494_122022-F.webp", descripcion:"Jugo",precio:"1600"},
-    {id:9, nombre:"Sprite", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_754202-MLA53024251477_122022-F.webp", descripcion:"Gaseosa", precio:"2400"},
-    {id:10, nombre:"Speed", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_994699-MLA52877016055_122022-F.webp", descripcion:"Energizante",precio:"1300"},
+    {id:1 , nombre:"Fernet", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_625593-MLA74134567488_012024-F.webp",descripcion:"Es una bebida elaborada con varias decenas de botánicos tales como hierbas, cortezas, raíces, frutas y flores provenientes de 4 continentes", precio:"9500",categoria:"Alcohol"},
+    {id:2 , nombre:"Absolut", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_653243-MLA74218928615_012024-F.webp",descripcion:" Es una bebida con cuerpo y complejo, pero suave y maduro con el carácter distintivo del grano de trigo, seguido de un toque a frutas secas.", precio:"17500",categoria:"Alcohol"},
+    {id:3, nombre:"Gin", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_691277-MLA74139426669_012024-F.webp", descripcion:"Su esencia es extraída a partir de 7 botánicos: Bayas de Enebro, Semillas de Coriandro, Raíz de Angelica, Raíz de Regaliz, Almendra, Cassia, Cáscara de Limon",precio:"10000", categoria:"Alcohol"},
+    {id:4, nombre:"Campari", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_987838-MLA53300291199_012023-F.webp", descripcion:"bebida alcohólica de grado medio, tonificante y refrescante, calificable como aperitivo, de característico color rojo y sabor amargo", precio:"70000", categoria:"Alcohol"},
+    {id:5, nombre:"Ron", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_657424-MLA74218925321_012024-F.webp", descripcion:"Ron triple añejo de barril, fruto de un proceso único de elaboración. Se reconoce por su brillante color ámbar y sus tenues toques de vainilla y tabaco.",precio:"12000", categoria:"Alcohol"},
+    {id:6 , nombre:"Whisky", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_811495-MLA74113010398_012024-F.webp", descripcion:"Aroma fresco y vibrante con notas de clavo y caramelo.Explosiones de manzana fresca con toques de canela y pimienta.Suaves notas ahumadas y afrutadas.", precio:"25000",categoria:"Alcohol"},
+    {id:7, nombre:"Coca cola", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_663842-MLA53151984915_012023-F.webp",descripcion:"bebida sin alcohol azucarada gaseosa ",precio:"2400", categoria:"Sin alcohol"},
+    {id:8, nombre:"Jugo cepita", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_841533-MLA52981759494_122022-F.webp", descripcion:"Bebida sin alcohol a base de jugo exprimido de naranja",precio:"1600", descripcion:"Sin alcohol"},
+    {id:9, nombre:"Sprite", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_754202-MLA53024251477_122022-F.webp", descripcion:"Bebida sin alcohol hecho a base de agua carbonatada con sabor a lima o limón, incolora y sin cafeína", precio:"2400",categoria:"Sin alcohol"},
+    {id:10, nombre:"Speed", imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_994699-MLA52877016055_122022-F.webp", descripcion:"Bebidda sin alcohol energizante",precio:"1300",categoria:"Sin alcohol"},
     
    ]
    
@@ -33,6 +33,16 @@ const productos = [
    const obtenerIdProductoLS =() => {
        return JSON.parse(localStorage.getItem("producto")) || 0;
    }
+
+
+   const obtenerIdCategoriaLS = () => {
+    return JSON.parse(localStorage.getItem("categoria")) || "";
+   }
+
+
+
+
+
    
    
    const cantTotalProductos = () =>  {
@@ -49,6 +59,28 @@ const productos = [
    const verProducto = (id) => {
        localStorage.setItem("producto",JSON.stringify(id));
    }
+
+   const verProductosPorCategoria = () => {
+    console.log(id)
+    localStorage.setItem("categoria",JSON.stringify(id));
+   }
+
+
+
+   const obtenerProductosPorCategoria = (id) => {
+    const productos= obtenerProductosLS();
+    const categoria = obtenerIdCategoriaLS ();
+    console.log(categoria)
+    const productosFiltrados =categoria ? productos.filter (item => item.categoria === categoria) : productos ;
+
+    return productosFiltrados;
+
+
+   }
+
+
+
+
    
    
    const obtenerProductoLS = () => {
